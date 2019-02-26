@@ -2,10 +2,11 @@
   "extends": ["eslint:recommended", "plugin:react/recommended", "plugin:prettier/recommended", "prettier/react"],
   "plugins": ["import", "react", "prettier"],
   "env": {
-    "es6": true
+    "es6": true,
+    "node": true
   },
   "parserOptions": {
-    "ecamaVersion": 6,
+    "ecmaVersion": 8,
     "sourceType": "module",
     "ecmaFeatures": {
       "jsx": true
