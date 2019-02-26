@@ -1,7 +1,6 @@
 .app-header {
   text-align: center;
   font-size: calc(10px + 2vmin);
-  color: white;
   padding-bottom: 20px;
 }
 
@@ -12,7 +11,7 @@
 }
 
 .app-content {
-  text-align: center;
-  width: 600px;
+  width: 720px;
   margin: 0 auto;
+  text-align: center;
 }

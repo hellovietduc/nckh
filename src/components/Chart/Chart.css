@@ -1,7 +1,8 @@
 .chart {
   margin: 0 auto;
+  margin-bottom: 50px;
 }
 
-.chart > div {
+.chart .recharts-wrapper {
   margin: 0 auto;
 }

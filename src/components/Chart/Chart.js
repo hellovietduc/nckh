@@ -1,29 +1,34 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import './Chart.css';
-import { LineChart, Line, CartesianGrid, XAxis, YAxis } from 'recharts';
-
-const data = [
-  { name: 'Day 1', uv: 1400, pv: 2400 },
-  { name: 'Day 2', uv: 1350, pv: 2000 },
-  { name: 'Day 3', uv: 1500, pv: 2500 },
-  { name: 'Day 4', uv: 1370, pv: 2100 },
-  { name: 'Day 5', uv: 1450, pv: 2500 }
-];
+import { LineChart, Line, CartesianGrid, XAxis, YAxis, Label } from 'recharts';
+import { merge } from 'lodash';
 
 class Chart extends Component {
   render() {
+    const { configs } = this.props;
+    const sizes = merge({ w: 500, h: 500 }, configs.sizes);
+    const data = configs.data || [];
+    const keys = merge({ data: '', x: 'name' }, configs.keys);
+    const labels = merge({ chartName: '', unit: '' }, configs.labels);
+    const colors = merge({ line: '#fff', grid: '#aaa' }, configs.colors);
     return (
       <div className="chart">
-        <LineChart width={550} height={400} data={data}>
-          <Line type="monotone" dataKey="uv" stroke="cyan" />
-          <Line type="monotone" dataKey="pv" stroke="pink" />
-          <CartesianGrid stroke="#aaa" strokeDasharray="5 5" />
-          <XAxis dataKey="name" />
-          <YAxis />
+        <LineChart data={data} width={sizes.w} height={sizes.h} margin={{ top: 20, bottom: 30 }}>
+          <Line type="monotone" dataKey={keys.data} stroke={colors.line} />
+          <CartesianGrid stroke={colors.grid} strokeDasharray="5 5" />
+          <XAxis dataKey={keys.x}>
+            <Label value={labels.chartName} position="bottom" fill="#fff" />
+          </XAxis>
+          <YAxis unit={labels.unit} />
         </LineChart>
       </div>
     );
   }
 }
+
+Chart.propTypes = {
+  configs: PropTypes.object.isRequired
+};
 
 export default Chart;

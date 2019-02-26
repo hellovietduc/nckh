@@ -4,10 +4,13 @@
 # production
 /build
 
+# IDEs
+/.idea
+/.vscode
+
 # misc
 .DS_Store
 .env*
-.idea
 
 # logs
 npm-debug.log*
