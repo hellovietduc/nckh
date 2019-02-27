@@ -1,32 +1,32 @@
 .app-header {
-  text-align: center;
-  font-size: 150%;
-  margin-bottom: 10px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 99;
+  overflow: auto;
+  width: 100vw;
+  height: 90px;
+  background-color: #121418;
 }
 
 .app-header h2 {
+  float: left;
   margin: 0;
-  padding-top: 20px;
-  padding-bottom: 20px;
+  margin-left: 10%;
+  padding: 20px 0;
+  font-size: 200%;
+}
+
+.app-header span {
+  float: right;
+  margin-top: 27px;
+  margin-right: 10%;
+  padding: 8px 30px 10px 30px;
+  background-color: #fff;
+  border-radius: 20px;
+  cursor: pointer;
 }
 
 .app-content {
-  margin: 0 auto;
-  padding-top: 10px;
-  text-align: center;
-}
-
-.app-noti {
-  margin-bottom: 30px;
-}
-
-.app-noti span {
-  display: inline-block;
-  padding: 10px;
-  padding-top: 8px;
-  text-align: center;
-  font-size: 120%;
-  color: #ff0000;
-  background-color: #fff;
-  border-radius: 10px;
+  margin: 120px auto 0 auto;
 }

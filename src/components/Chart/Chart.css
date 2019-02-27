@@ -1,8 +1,8 @@
-.chart {
+.recharts-responsive-container {
   margin: 0 auto;
   margin-bottom: 50px;
 }
 
-.chart .recharts-wrapper {
+.recharts-wrapper {
   margin: 0 auto;
 }

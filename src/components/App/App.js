@@ -6,10 +6,10 @@ import Realtime from '../../services/realtime';
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = { noti: 'Server Disconnected', chartView: null };
-    this.onServerConnected.bind(this)();
-    this.onServerDisconnected.bind(this)();
-    this.onReceivedNoti.bind(this)();
+    this.state = {
+      noti: { msg: 'Server Disconnected', color: '#ff0000' },
+      chartView: null
+    };
   }
 
   onServerConnected() {
@@ -27,14 +27,23 @@ class App extends Component {
 
   onServerDisconnected() {
     Realtime.on('disconnect', () => {
-      this.setState({ noti: 'Server Disconnected', chartView: null });
+      this.setState({
+        noti: { msg: 'Server Disconnected', color: '#ff0000' },
+        chartView: null
+      });
     });
   }
 
   onReceivedNoti() {
     Realtime.on('noti', ({ msg }) => {
-      this.setState({ noti: msg });
+      this.setState({ noti: { msg, color: '#00ce1b' } });
     });
+  }
+
+  componentDidMount() {
+    this.onServerConnected.bind(this)();
+    this.onServerDisconnected.bind(this)();
+    this.onReceivedNoti.bind(this)();
   }
 
   render() {
@@ -42,13 +51,9 @@ class App extends Component {
       <div className="app">
         <header className="app-header">
           <h2>Real-time Chart</h2>
+          <span style={{ color: this.state.noti.color }}>{this.state.noti.msg}</span>
         </header>
-        <div className="app-content">
-          <div className="app-noti">
-            <span>{this.state.noti}</span>
-          </div>
-          {this.state.chartView}
-        </div>
+        <div className="app-content">{this.state.chartView}</div>
       </div>
     );
   }

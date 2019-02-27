@@ -1,14 +1,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import './Chart.css';
-import { LineChart, Line, CartesianGrid, XAxis, YAxis, Label, Tooltip } from 'recharts';
-import { merge } from 'lodash';
+import { ResponsiveContainer, LineChart, Line, CartesianGrid, XAxis, YAxis, Label, Tooltip } from 'recharts';
 import Realtime from '../../services/realtime';
 
 class Chart extends Component {
   constructor(props) {
     super(props);
-    this.sizes = merge({ w: 720, h: 500 }, props.sizes);
     if (props.unit === 'u') {
       this.labels = { chartName: 'Voltage chart', unit: 'V' };
       this.colors = { line: '#ff21cb' };
@@ -17,20 +15,19 @@ class Chart extends Component {
       this.colors = { line: '#00ffff' };
     }
     this.state = { data: [] };
-    this.onReceivedData.bind(this)();
   }
 
-  onReceivedData() {
+  componentDidMount() {
     Realtime.on('newData', data => {
       this.setState({ data: data[this.props.unit] });
     });
   }
 
   render() {
-    const { sizes, labels, colors } = this;
+    const { labels, colors } = this;
     return (
-      <div className="chart">
-        <LineChart data={this.state.data} width={sizes.w} height={sizes.h} margin={{ top: 20, bottom: 30 }}>
+      <ResponsiveContainer width="60%" minWidth={360} aspect={1.7}>
+        <LineChart data={this.state.data} margin={{ top: 30, bottom: 30 }}>
           <Line type="monotone" dataKey="val" stroke={colors.line} />
           <CartesianGrid stroke={colors.grid} strokeDasharray="5 5" />
           <XAxis dataKey="name">
@@ -44,7 +41,7 @@ class Chart extends Component {
             formatter={value => parseFloat(value).toFixed(this.props.unit === 'u' ? 1 : 2)}
           />
         </LineChart>
-      </div>
+      </ResponsiveContainer>
     );
   }
 }
