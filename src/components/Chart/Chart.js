@@ -10,9 +10,11 @@ class Chart extends Component {
     if (props.unit === 'u') {
       this.labels = { chartName: 'Voltage chart', unit: 'V' };
       this.colors = { line: '#ff21cb' };
+      this.domain = [4, 6];
     } else if (props.unit === 'i') {
       this.labels = { chartName: 'Current chart', unit: 'A' };
       this.colors = { line: '#00ffff' };
+      this.domain = [0.1, 0.3];
     }
     this.state = { data: [] };
   }
@@ -24,7 +26,7 @@ class Chart extends Component {
   }
 
   render() {
-    const { labels, colors } = this;
+    const { labels, colors, domain } = this;
     return (
       <ResponsiveContainer width="60%" minWidth={360} aspect={1.7}>
         <LineChart data={this.state.data} margin={{ top: 30, bottom: 30 }}>
@@ -33,7 +35,7 @@ class Chart extends Component {
           <XAxis dataKey="name">
             <Label value={labels.chartName} position="bottom" fill="#fff" />
           </XAxis>
-          <YAxis unit={labels.unit} />
+          <YAxis unit={labels.unit} domain={domain} />
           <Tooltip
             contentStyle={{ borderRadius: '10px' }}
             itemStyle={{ color: '#000' }}
