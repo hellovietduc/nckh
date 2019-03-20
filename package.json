@@ -1,6 +1,6 @@
 {
   "name": "nckh-client",
-  "version": "0.1.5",
+  "version": "1.0.0",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build"
@@ -26,5 +26,6 @@
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ]
+  ],
+  "homepage": "."
 }

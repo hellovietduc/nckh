@@ -1,0 +1,22 @@
+@import '../../global.css';
+
+.table {
+  width: 60%;
+  margin: 20px auto;
+  border-top: 1px solid var(--color-black);
+  border-left: 1px solid var(--color-black);
+  text-align: center;
+}
+
+.table > div > div {
+  padding: 5px 0;
+  border-right: 1px solid var(--color-black);
+  border-bottom: 1px solid var(--color-black);
+}
+
+.row-title,
+.row-data {
+  display: grid;
+  grid-gap: 0;
+  grid-template-columns: 10% 30% 60%;
+}

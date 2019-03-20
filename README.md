@@ -13,7 +13,7 @@ A React web app used to visualize data received from [nckh-server](https://githu
 2. Create `.env` file
 
    ```
-   REACT_APP_SERVER_URL=<your nckh-server URL>/web # connect to the /web namespace
+   REACT_APP_SERVER_URL=<development nckh-server URL>
    ```
 
 3. Start coding and see changes in real time
@@ -22,8 +22,24 @@ A React web app used to visualize data received from [nckh-server](https://githu
    npm start
    ```
 
-## Build
+## Deploy
 
-```
-npm build
-```
+1. Create `.env.production` file
+
+   ```
+   REACT_APP_SERVER_URL=<production nckh-server URL>
+   ```
+
+2. Edit `package.json`
+
+   ```
+   "homepage": "<nckh-client URL>"
+   ```
+
+3. Run the build
+
+   ```
+   npm run build
+   ```
+
+4. Deploy contents in the `build` directory

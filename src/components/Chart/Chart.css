@@ -1,6 +1,9 @@
+@import '../../global.css';
+
 .recharts-responsive-container {
   margin: 0 auto;
-  margin-bottom: 50px;
+  --color-u-line: #a01a7d;
+  --color-i-line: #574ae2;
 }
 
 .recharts-wrapper {

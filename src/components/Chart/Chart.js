@@ -1,56 +1,41 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import './Chart.css';
-import { ResponsiveContainer, LineChart, Line, CartesianGrid, XAxis, YAxis, Label, Tooltip } from 'recharts';
-import Realtime from '../../services/realtime';
+import { ResponsiveContainer, LineChart, Line, CartesianGrid, YAxis, XAxis, Tooltip } from 'recharts';
 
-class Chart extends Component {
-  constructor(props) {
-    super(props);
-    if (props.unit === 'u') {
-      this.labels = { chartName: 'Voltage chart', unit: 'V' };
-      this.colors = { line: '#ff21cb' };
-      this.domain = [4, 6];
-    } else if (props.unit === 'i') {
-      this.labels = { chartName: 'Current chart', unit: 'A' };
-      this.colors = { line: '#00ffff' };
-      this.domain = [0.1, 0.3];
-    }
-    this.state = { data: [] };
+function Chart(props) {
+  const { label } = props;
+  const data = props.data[label.key].arr.slice(0, 15).reverse();
+  const colors = {};
+  const domain = [];
+  if (props.label.key === 'u') {
+    colors.line = 'var(--color-u-line)';
+    domain.push(0, 20);
+  } else if (props.label.key === 'i') {
+    colors.line = 'var(--color-i-line)';
+    domain.push(0, 0.6);
   }
-
-  componentDidMount() {
-    Realtime.on('newData', data => {
-      this.setState({ data: data[this.props.unit] });
-    });
-  }
-
-  render() {
-    const { labels, colors, domain } = this;
-    return (
-      <ResponsiveContainer width="60%" minWidth={360} aspect={1.7}>
-        <LineChart data={this.state.data} margin={{ top: 30, bottom: 30 }}>
-          <Line type="monotone" dataKey="val" stroke={colors.line} />
-          <CartesianGrid stroke={colors.grid} strokeDasharray="5 5" />
-          <XAxis dataKey="name">
-            <Label value={labels.chartName} position="bottom" fill="#fff" />
-          </XAxis>
-          <YAxis unit={labels.unit} domain={domain} />
-          <Tooltip
-            contentStyle={{ borderRadius: '10px' }}
-            itemStyle={{ color: '#000' }}
-            labelStyle={{ display: 'none' }}
-            formatter={value => parseFloat(value).toFixed(this.props.unit === 'u' ? 1 : 2)}
-          />
-        </LineChart>
-      </ResponsiveContainer>
-    );
-  }
+  return (
+    <ResponsiveContainer width="70%" minWidth={320} aspect={1.6}>
+      <LineChart data={data} margin={{ top: 30, bottom: 30 }}>
+        <Line dataKey="value" type="monotone" stroke={colors.line} />
+        <CartesianGrid stroke="var(--color-black)" strokeDasharray="5 5" />
+        <YAxis domain={domain} unit={label.unit} axisLine={false} stroke="var(--color-black)" />
+        <XAxis dataKey="time" hide={true} tick={false} />
+        <Tooltip
+          contentStyle={{ borderRadius: '10px', borderColor: colors.line }}
+          itemStyle={{ color: 'var(--color-black)' }}
+          labelStyle={{ color: 'var(--color-black)' }}
+          animationDuring={100}
+        />
+      </LineChart>
+    </ResponsiveContainer>
+  );
 }
 
 Chart.propTypes = {
-  unit: PropTypes.string.isRequired,
-  sizes: PropTypes.object
+  label: PropTypes.object.isRequired,
+  data: PropTypes.object.isRequired
 };
 
 export default Chart;

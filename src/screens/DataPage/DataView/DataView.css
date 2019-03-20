@@ -1,0 +1,31 @@
+@import '../../../global.css';
+
+.data {
+  margin: 20px 0 50px 0;
+}
+
+.data-switch {
+  text-align: center;
+}
+
+.data-switch button {
+  padding: 10px 20px;
+  border: none;
+  outline: none;
+  color: var(--color-black);
+  font-size: 100%;
+}
+
+.data-switch button.active {
+  color: var(--color-contrast);
+  background-color: var(--color-primary);
+}
+
+.data-switch button.inactive {
+  background-color: var(--color-contrast);
+}
+
+.data-switch button.inactive:hover {
+  background-color: var(--color-secondary);
+  transition-duration: 0.3s;
+}

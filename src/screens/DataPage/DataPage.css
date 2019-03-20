@@ -1,0 +1,28 @@
+@import '../../global.css';
+
+.title {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin: 20px 0;
+  font-size: 200%;
+}
+
+.title .small-text {
+  font-size: 60%;
+}
+
+.download button {
+  padding: 10px 20px;
+  border: none;
+  outline: none;
+  color: var(--color-contrast);
+  background-color: var(--color-secondary);
+  font-size: 45%;
+}
+
+.download button:hover {
+  background-color: var(--color-primary);
+  transition-duration: 0.3s;
+}
