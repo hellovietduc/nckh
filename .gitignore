@@ -1,8 +1,8 @@
 # dependencies
-/node_modules
+node_modules
 
 # production
-/build
+build
 
 # IDEs
 /.idea
@@ -10,6 +10,7 @@
 
 # misc
 .DS_Store
+data
 .env*
 
 # logs

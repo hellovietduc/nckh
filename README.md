@@ -1,45 +1,70 @@
-# nckh-client
+# nckh
 
-A React web app used to visualize data received from [nckh-server](https://github.com/vietduc01100001/nckh-server) in real time.
+My web app built to store and draw real-time graphs of electric current and voltage sent from an Arduino Monitoring System.
+
+- Frontend: React
+- Backend: Node.js
 
 ## Development
 
 1. Clone this project
 
    ```
-   git clone https://github.com/vietduc01100001/nckh-client
+   git clone https://github.com/vietduc01100001/nckh
    ```
 
-2. Create `.env` file
+2. Set these environment variables
 
    ```
-   REACT_APP_SERVER_URL=<development nckh-server URL>
+   REACT_APP_SERVER_URL=localhost:3000
+   PORT=3000
+   REDIS_URI=redis://localhost:6379
+   DATA_DIR=./data
+   CORS_ORIGIN=*
    ```
 
-3. Start coding and see changes in real time
+3. Start the client
 
    ```
+   cd client
    npm start
    ```
 
-## Deploy
-
-1. Create `.env.production` file
+4. Start the server
 
    ```
-   REACT_APP_SERVER_URL=<production nckh-server URL>
+   cd server
+   npm run dev
    ```
 
-2. Edit `package.json`
+## Deployment
+
+1. Build the app
 
    ```
-   "homepage": "<nckh-client URL>"
+   ./build.sh
    ```
 
-3. Run the build
+2. Set these environment variables
 
    ```
-   npm run build
+   REACT_APP_SERVER_URL=localhost:3000
+   PORT=3000
+   REDIS_URI=redis://localhost:6379
+   DATA_DIR=./data
+   CORS_ORIGIN=*
    ```
 
-4. Deploy contents in the `build` directory
+3. Run the client
+
+   ```
+   cd client
+   npx serve -s build
+   ```
+
+4. Run the server
+
+   ```
+   cd server
+   npm start
+   ```

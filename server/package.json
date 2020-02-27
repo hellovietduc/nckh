@@ -1,0 +1,27 @@
+{
+  "name": "nckh-server",
+  "version": "1.0.0",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon -r dotenv/config index.js"
+  },
+  "dependencies": {
+    "bluebird": "^3.5.3",
+    "compression": "^1.7.4",
+    "cors": "^2.8.5",
+    "express": "^4.14.1",
+    "moment": "^2.24.0",
+    "query-string": "^6.4.0",
+    "redis": "^2.8.0",
+    "socket.io": "^2.2.0"
+  },
+  "devDependencies": {
+    "dotenv": "^6.2.0",
+    "eslint": "^5.15.3",
+    "eslint-config-prettier": "^4.1.0",
+    "eslint-plugin-import": "^2.16.0",
+    "eslint-plugin-prettier": "^3.0.1",
+    "nodemon": "^1.18.10",
+    "prettier": "^1.16.4"
+  }
+}
